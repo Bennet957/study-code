@@ -7,6 +7,11 @@ float zahl2;
 char rechenzeichen;
 float ergebnis;
 
+float addition();
+float subtraktion();
+float multiplikation();
+float division();
+
 int main (){
     printf("Erste Kommazahl eingeben:\n");
     scanf ("%f",&zahl1);
@@ -16,20 +21,20 @@ int main (){
     scanf(" %c",&rechenzeichen);
     switch (rechenzeichen){
         case '+':
-            ergebnis=zahl1+zahl2;
+            ergebnis=addition();
             break;
         case '-':
-            ergebnis=zahl1-zahl2;
+            ergebnis=subtraktion();
             break;
         case '*':
-            ergebnis=zahl1*zahl2;
+            ergebnis=multiplikation();
             break;
         case '/':
             if (zahl2 == 0) {
                 printf("Fehler: Division durch 0 ist nicht erlaubt.\n");
                 return 1;
             }
-            ergebnis = zahl1 / zahl2;
+            ergebnis = division();
             break;
         default:
             printf("Ungültiger Rechenoperator.\n");
@@ -40,4 +45,16 @@ int main (){
     printf("%f",ergebnis);
     return 0;
 
+}
+float addition(){
+    return zahl1 + zahl2;
+}
+float subtraktion(){
+    return zahl1 - zahl2;
+}
+float multiplikation(){
+    return zahl1 * zahl2;
+}
+float division(){
+    return zahl1 / zahl2;
 }
