@@ -25,7 +25,11 @@ int main (){
             ergebnis=zahl1*zahl2;
             break;
         case '/':
-            ergebnis=zahl1/zahl2;
+            if (zahl2 == 0) {
+                printf("Fehler: Division durch 0 ist nicht erlaubt.\n");
+                return 1;
+            }
+            ergebnis = zahl1 / zahl2;
             break;
         default:
             printf("Ungültiger Rechenoperator.\n");
