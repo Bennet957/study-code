@@ -14,18 +14,24 @@ int main (){
     scanf ("%f",&zahl2);
     printf("Geben Sie nun den Rechenoperator ein:\n");
     scanf(" %c",&rechenzeichen);
-    if (rechenzeichen=='+'){
-        ergebnis=zahl1+zahl2;
+    switch (rechenzeichen){
+        case '+':
+            ergebnis=zahl1+zahl2;
+            break;
+        case '-':
+            ergebnis=zahl1-zahl2;
+            break;
+        case '*':
+            ergebnis=zahl1*zahl2;
+            break;
+        case '/':
+            ergebnis=zahl1/zahl2;
+            break;
+        default:
+            printf("Ungültiger Rechenoperator.\n");
+            return 1;
     }
-    if (rechenzeichen=='*'){
-        ergebnis=zahl1*zahl2;
-    }
-    if (rechenzeichen=='-'){
-        ergebnis=zahl1-zahl2;
-    }
-    if (rechenzeichen=='/'){
-        ergebnis=zahl1/zahl2;
-    }
+    
     printf("Ihr Ergebnis lautet:\n");
     printf("%f",ergebnis);
     return 0;
