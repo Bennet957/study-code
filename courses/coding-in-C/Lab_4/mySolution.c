@@ -21,6 +21,8 @@ int main(){
 
     unsigned char *p1=&sprichwort[0];
     unsigned char *p100=&sprichwort[len-1];
+    int sprichwort_int1=(int)*p1;
+    int sprichwort_int100=(int)*p100;
 
     while (p1 < p100) {
         if (*p100==*p1){
@@ -32,6 +34,7 @@ int main(){
             return 0;
         }
     }
+    
     printf("Das Sprichwort %s ist ein Palindrom.", sprichwort);
     
     
