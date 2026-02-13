@@ -3,14 +3,16 @@
 #include <string.h>
 
 int main(void) {
-    int size_array=11;
-    int array1[size_array]={0,0,0,0,0,0,0,0,0,0};
-    array1[1]=1;
-    array1[3]=1;
-    array1[5]=1;
+    int x = 10;
+    int *p = &x;
+    int **pp = &p;
 
-    int *pointer1=&array1[0];
+    // TODO: complete the output statements
+    printf("x = %d\n", x);
+    printf("x via p = %d\n", *p);
+    printf("x via pp = %d\n", **pp);
 
-    int array_temp[size_array]={0,0,0,0,0,0,0,0,0,0};
+    **pp=42; // modify x via pp
+    printf("x after modification via pp = %d\n", x); 
     return 0;
 }
