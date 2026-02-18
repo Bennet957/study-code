@@ -7,8 +7,8 @@ int main(void) {
         return 1;
     }
 
-    int character;
-    while ((character=fgetc(file)!=EOF)){
+    char character[100];
+    while (fgets(character,sizeof(character),file)!=NULL){
         printf ("%c",character);
     }
     
