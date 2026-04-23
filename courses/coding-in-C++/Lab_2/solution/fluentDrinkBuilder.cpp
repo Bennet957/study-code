@@ -1,77 +1,91 @@
+/**
+ * @file fluent_drink_builder.cpp
+ * @brief Simple fluent builder for configuring a drink.
+ */
+
 #include <iostream>
 #include <string>
+#include "fluentDrinkBuilder.hpp"
 
-constexpr int DEFAULT_TEMP = 12;
-
-class DrinkBuilder
+DrinkBuilder::DrinkBuilder(const std::string &name, int sugar, int temperature, bool withMilk)
+    : name(name), sugar(sugar), temperature(temperature), withMilk(withMilk)
 {
-private:
-    std::string name;
-    int sugar;
-    int temperature = DEFAULT_TEMP;
-    bool withMilk;
 
-public:
-    DrinkBuilder(const std::string &name, int sugar, int temperature, bool withMilk)
-        : name(name), sugar(sugar), temperature(temperature), withMilk(withMilk) {};
-
-    DrinkBuilder &setName(const std::string &name)
+    if (temperature <= 0)
     {
-        this->name = name;
-        return *this;
+        this->temperature = DEFAULT_TEMP;
     }
 
-    DrinkBuilder &setSugar(int sugar)
+    if (sugar < 0)
     {
-        this->sugar = sugar;
-        return *this;
-    }
-
-    DrinkBuilder &setTemperature(int temperature)
-    {
-        this->temperature = temperature;
-        return *this;
-    }
-
-    DrinkBuilder &setWithMilk(bool withMilk)
-    {
-        this->withMilk = withMilk;
-        return *this;
-    }
-
-    const DrinkBuilder &print()
-    {
-        std::cout << "Name: " << this->name << '\n';
-        std::cout << "Sugar: " << this->sugar << '\n';
-        std::cout << "Temperature: " << this->temperature << '\n';
-        std::cout << "With Milk: " << std::boolalpha << this->withMilk << '\n';
-
-        return *this;
-    }
-
-    const DrinkBuilder &isValid()
-    {
-        bool issueDetected = false;
-
-        if (sugar < 0)
-        {
-            std::cout << "Hey - you should add more sugar" << '\n';
-            issueDetected = true;
-        }
-        if (temperature <= 0)
-        {
-            std::cout << "I have a soare throat - increase the temperature" << '\n';
-            issueDetected = true;
-        }
-
-        if (!issueDetected)
-        {
-            std::cout << "That's perfect!" << '\n';
-        }
-
-        return *this;
+        this->sugar = DEFAULT_MIN_SUGAR;
     }
 };
+
+DrinkBuilder &DrinkBuilder::setName(const std::string &name)
+{
+    this->name = name;
+    return *this;
+}
+
+DrinkBuilder &DrinkBuilder::setSugar(int sugar)
+{
+    if (sugar >= 0)
+    {
+        this->sugar = sugar;
+    }
+
+    return *this;
+}
+
+DrinkBuilder &DrinkBuilder::setTemperature(int temperature)
+{
+    if (temperature > 0)
+    {
+        this->temperature = temperature;
+    }
+
+    return *this;
+}
+
+DrinkBuilder &DrinkBuilder::setWithMilk(bool withMilk)
+{
+    this->withMilk = withMilk;
+    return *this;
+}
+
+const DrinkBuilder &DrinkBuilder::print() const
+{
+    std::cout << "Name: " << this->name << '\n';
+    std::cout << "Sugar: " << this->sugar << '\n';
+    std::cout << "Temperature: " << this->temperature << '\n';
+    std::cout << "With Milk: " << std::boolalpha << this->withMilk << '\n';
+
+    return *this;
+}
+
+bool DrinkBuilder::isValid() const
+{
+    bool valid = true;
+
+    if (this->sugar < 0)
+    {
+        std::cout << "Hey - you should add more sugar" << '\n';
+        valid = false;
+    }
+    if (this->temperature <= 0)
+    {
+        std::cout << "I have a sore throat - increase the temperature" << '\n';
+        valid = false;
+    }
+
+    if (valid)
+    {
+        std::cout << "That's perfect!" << '\n';
+    }
+
+    return valid;
+}
 
 int main()
 {
