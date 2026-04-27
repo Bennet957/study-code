@@ -49,8 +49,12 @@ int main(){
                 }
 
                 // Randbedingungen
-                if (new_pos<0) new_pos=0;
-                if (new_pos>=size_arr) new_pos=size_arr-1;
+                if (new_pos<0) {
+                    new_pos=0;
+                }
+                if (new_pos>=size_arr) {
+                    new_pos=size_arr-1;
+                }
 
                 // Kollision behandeln
                 if (*(pointer_arr_result+new_pos)==1){
@@ -71,3 +75,4 @@ int main(){
 
     return 0;
 }
+

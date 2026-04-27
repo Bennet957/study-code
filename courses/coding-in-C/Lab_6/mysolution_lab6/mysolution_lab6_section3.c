@@ -55,7 +55,7 @@ int main() {
     sensor1->threshold = 0.8;
     sensor2->threshold = 0.7;
 
-    /* --------- dein Teil: Sensor1 detections --------- */
+    
     printf("Sensor1 detections");
 
     int prev1 = 0;
@@ -76,12 +76,12 @@ int main() {
 
         prev1 = now1;
     }
-    // falls Detection bis zum Dateiende aktiv bleibt
+    
     if (prev1) {
         printf(" End: %.2f", sensor1->data->time);
     }
 
-    /* --------- dein Teil: Sensor2 detections --------- */
+   
     printf("\n\n\nSensor2 detections");
 
     int prev2 = 0;
@@ -102,11 +102,11 @@ int main() {
 
         prev2 = now2;
     }
-    // falls Detection bis zum Dateiende aktiv bleibt
+    
     if (prev2) {
         printf(" End: %.2f", sensor2->data->time);
     }
-    /* <<< WICHTIG: HIER war die fehlende KLAMMER im Original (Sensor2 while) >>> */
+   
 
     rewind(file1);
     rewind(file2);

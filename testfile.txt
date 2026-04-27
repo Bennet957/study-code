@@ -1,0 +1,3 @@
+Dies ist eine Testdatei für das fgetc-Projekt.
+Hier steht noch eine weitere Zeile.
+1234567890

@@ -117,54 +117,56 @@ However, the implementation contains multiple conceptual, stylistic and technica
 #include <iostream>
 #include <string>
 #include <iomanip>
-using namespace std;
+using namespace std;  //namespaces vermeiden
 
 class Article {
 public:
-    string name;
-    double price;
-    int stock;
-    string* category;
-    int id;
+    string name; //sollte private sein
+    double price; //sollte private sein
+    int stock; //sollte private sein
+    string* category; //sollte private sein und kein Pointer notwendig
+    int id; //sollte private sein
 
-    Article(string name, double price, int stock, string category, int id) {
-        name = name;
-        price = price;
-        stock = stock;
+    Article(string name, double price, int stock, string category, int id) { //initializer list
+        name = name; //this verwenden
+        price = price; //this verwwenden
+        stock = stock; //this verwenden
         this->id = id;
         this->category = new string;
-        *this->category = category;
+        *this->category = category;  //kein Pointer nötig
     }
-
+    //Destruktor fehlt 
     void setPrice(double price) {
-        price = price;
+        price = price; //this verwenden
+        //negative Zahlen sollten abgefangen werden
     }
 
     void sell(int amount) {
-        stock = stock - amount;
+        stock = stock - amount; //this verwenden & einheitlich
     }
 
     void restock(int amount) {
+        //negative Zahlen sollten abgefangen werden
         this->stock += amount;
     }
 
     double applyDiscount(double percent) {
-        price = price - price * percent / 100;
-        return price;
+        price = price - price * percent / 100; //Klammern setzen wegen der Rechnungen
+        return price; 
     }
 
-    double getPrice() {
-        return price;
+    double getPrice() { //const Funktionen
+        return price; 
     }
 
-    bool isAvailable() {
+    bool isAvailable() { //const Funktionen
         if (stock > 0)
-            return true;
+            return true; //geschweifte Kalmmern
         else
             return false;
     }
 
-    void printInfo() {
+    void printInfo() { //außerhalb der Klasse, da sehr viele Zeilen Code
         cout << "Article: " << name << endl;
         cout << "Category: " << *category << endl;
         cout << "Price: " << price << endl;
@@ -174,18 +176,18 @@ public:
 };
 
 int main() {
-    Article a("Laptop", 999.99, 10, "Electronics", 101);
+    Article a("Laptop", 999.99, 10, "Electronics", 101); //keine gute Namensgebung
 
     a.sell(15);
-    a.restock(-5);
-    a.price = -100;
+    a.restock(-5); //restock kann auch nicht negativ sein
+    a.price = -100; //price kann nicht negativ sein 
     a.applyDiscount(150);
 
-    if (a.isAvailable()) cout << "Article available" << endl;
+    if (a.isAvailable()) cout << "Article available" << endl; //Funktion ist falsch benutzt
 
     a.printInfo();
 }
-```
+
 
 ### Task Part 1
 Find at least 14 issues in the code.
