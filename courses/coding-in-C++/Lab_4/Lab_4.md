@@ -41,19 +41,18 @@ Create a class called Vector2D which contains:
 
 ---
 
-#### Part 2 – Function Overloading
+### Part 2 – Function Overloading
 
-Implement a function that computes the length (magnitude) of the vector.
+Implement a method that computes the length (magnitude) of the vector.
 
 - Provide one version that returns the exact length
 - Provide a second overloaded version that returns the length rounded to a specified number of decimal places
-- Test both versions of the function in the main function
-
-Explicitly use function overloading
+   - Use the ```round``` function of ```<cmath>``` for this purpose
+- Test both versions of the method in the main function
 
 ---
 
-#### Part 3 – Operator Overloading (Member Functions)
+### Part 3 – Operator Overloading (Member Functions)
 
 Implement operator overloading for basic vector operations.
 
@@ -71,7 +70,7 @@ Decide:
 
 ---
 
-#### Part 4 – Operator Overloading (Free Functions)
+### Part 4 – Operator Overloading (Free Functions)
 
 Implement functionality to:
 
@@ -87,7 +86,7 @@ Think carefully about:
 
 ---
 
-#### Part 5 – Comparison Operators
+### Part 5 – Comparison Operators
 
 Enable comparison between two vectors.
 
